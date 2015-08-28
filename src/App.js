@@ -1,9 +1,35 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import hot from './hot';
 
-@hot('RendererA')
-class RendererA extends Component {
+// In this demo, we show two things:
+
+// - You can edit classes even though they're not exported
+// - You can throw errors inside render() method and they'll be handled
+
+// We achieve this by using babel-plugin-wrap-react-components
+// to find all React components, and configuring it via .babelrc
+// to use a custom wrapper function.
+
+// Our wrapper function is defined in transforms/index.js.
+// It delegates to two different wrappers:
+
+// - hotify uses react-proxy to hot reload components
+// - catchRenderErrors.. well, catches render errors
+
+// Note how wrappers are composable and can be distributed on NPM
+// as separate packages.
+
+var RandomNumber = React.createClass({
+  componentWillMount() {
+    this.num = Math.random();
+  },
+
+  render() {
+    return <div>Random number: {this.num}</div>
+  }
+});
+
+class TimerA extends Component {
   constructor(props) {
     super(props);
     this.state = { counter: 0 };
@@ -20,10 +46,9 @@ class RendererA extends Component {
     clearInterval(this.interval);
   }
 
-  // Feel free to edit this
   render() {
     return (
-      <div style={{ color: 'green' }}>
+      <div style={{ color: 'red' }}>
         <h2>{this.props.children}</h2>
         <h3>Renderer own state: {this.state.counter}</h3>
       </div>
@@ -31,12 +56,11 @@ class RendererA extends Component {
   }
 }
 
-@hot('RendererB')
-class RendererB extends Component {
+class TimerB extends Component {
   constructor(props) {
     super(props);
     this.state = { counter: 0 };
-    this.interval = setInterval(() => this.tick(), 1000);
+    this.interval = setInterval(() => this.tick(), 300);
   }
 
   tick() {
@@ -49,7 +73,6 @@ class RendererB extends Component {
     clearInterval(this.interval);
   }
 
-  // Feel free to edit this
   render() {
     return (
       <div style={{ color: 'blue' }}>
@@ -60,59 +83,13 @@ class RendererB extends Component {
   }
 }
 
-function makeSomething(Renderer, speed) {
-  return class Something extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { counter: 0 };
-    }
-
-    componentDidMount() {
-      this.tick();
-    }
-
-    componentWillUnmount() {
-      clearTimeout(this.timeout);
-    }
-
-    @autobind
-    tick() {
-      this.setState({
-        counter: this.state.counter + 1
-      }, () => {
-        this.timeout = setTimeout(this.tick, speed);
-      });
-    }
-
-    // Feel free to edit this
-    render() {
-      return (
-        <div>
-          <Renderer>HOC state: {this.state.counter}</Renderer>
-        </div>
-      );
-    }
-  };
-}
-
-let Something1 = hot('makeSomething$Something1')(
-  // Feel free to edit this
-  makeSomething(RendererA, 100)
-);
-let Something2 = hot('makeSomething$Something2')(
-  // Feel free to edit this
-  makeSomething(RendererB, 100)
-);
-
-@hot('App')
 export default class App extends Component {
-  // Feel free to edit this
   render() {
     return (
       <div>
-        <Something1 />
-        <Something2 />
-        nice uh
+        <TimerA />
+        <TimerB />
+        <RandomNumber />
       </div>
     );
   }

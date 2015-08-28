@@ -7,8 +7,9 @@ if (!window.__reactProxies) {
 
 const forceUpdate = getForceUpdate(React);
 
-export default function hot(id) {
+export default function hotify(file, displayName) {
   return function (ReactClass) {
+    const id = `${file}:${displayName}`;
     if (window.__reactProxies[id]) {
       console.info(`updating ${id}`);
       const instances = window.__reactProxies[id].update(ReactClass);
@@ -16,7 +17,7 @@ export default function hot(id) {
         instances.forEach(forceUpdate);
       });
     } else {
-      console.info(`creating ${id}`);
+      console.info(`proxying ${id}`);
       window.__reactProxies[id] = createProxy(ReactClass);
     }
 

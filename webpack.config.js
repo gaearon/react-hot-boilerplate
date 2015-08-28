@@ -18,7 +18,10 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      'my-custom-transform-see-webpack-config': path.join(__dirname, 'src', 'transforms')
+    }
   },
   module: {
     loaders: [{

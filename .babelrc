@@ -1,3 +1,12 @@
 {
-  "stage": 0
+  "stage": 0,
+  "plugins": [
+    "babel-plugin-react-display-name",
+    "babel-plugin-wrap-react-components"
+  ],
+  "extra": {
+    "babel-plugin-wrap-react-components": {
+      "wrap": "my-custom-transform-see-webpack-config"
+    }
+  }
 }
