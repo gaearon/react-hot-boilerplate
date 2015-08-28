@@ -50,7 +50,7 @@ class TimerA extends Component {
     return (
       <div style={{ color: 'red' }}>
         <h2>{this.props.children}</h2>
-        <h3>Renderer own state: {this.state.counter}</h3>
+        <h3>TimerA state: {this.state.counter}</h3>
       </div>
     );
   }
@@ -77,7 +77,7 @@ class TimerB extends Component {
     return (
       <div style={{ color: 'blue' }}>
         <h2>{this.props.children}</h2>
-        <h3>Renderer own state: {this.state.counter}</h3>
+        <h3>TimerB state: {this.state.counter}</h3>
       </div>
     );
   }
