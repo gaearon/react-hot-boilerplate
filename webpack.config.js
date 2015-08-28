@@ -18,14 +18,13 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx'],
     alias: {
       'my-custom-transform-see-webpack-config': path.join(__dirname, 'src', 'transforms')
     }
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
     }]
