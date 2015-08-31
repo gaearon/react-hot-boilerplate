@@ -34,6 +34,7 @@
     "babel-plugin-react-display-name": "^2.0.0",
     "babel-plugin-wrap-react-components": "^2.0.1",
     "eslint-plugin-react": "^2.3.0",
+    "react-hot-loader": "^2.0.0-alpha-4",
     "react-proxy": "^0.6.7",
     "webpack": "^1.9.6",
     "webpack-dev-server": "^1.8.2"
