@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function catchRenderErrors(filename, displayName) {
+export default function catchRenderErrors({ filename, displayName }) {
   return function transform(ReactClass) {
     const originalRender = ReactClass.prototype.render;
     ReactClass.prototype.render = function tryRender() {

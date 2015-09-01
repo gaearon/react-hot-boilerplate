@@ -7,20 +7,24 @@ if (!window.__reactProxies) {
 
 const forceUpdate = getForceUpdate(React);
 
-export default function hotify(file, displayName) {
+export default function hotify({ filename, uniqueId, isInFunction }) {
   return function (ReactClass) {
-    const id = `${file}:${displayName}`;
-    if (window.__reactProxies[id]) {
-      console.info(`updating ${id}`);
-      const instances = window.__reactProxies[id].update(ReactClass);
+    if (isInFunction) {
+      return ReactClass;
+    }
+
+    const globalUniqueId = `${filename}:${uniqueId}`;
+    if (window.__reactProxies[globalUniqueId]) {
+      console.info(`updating ${globalUniqueId}`);
+      const instances = window.__reactProxies[globalUniqueId].update(ReactClass);
       requestAnimationFrame(() => {
         instances.forEach(forceUpdate);
       });
     } else {
-      console.info(`proxying ${id}`);
-      window.__reactProxies[id] = createProxy(ReactClass);
+      console.info(`proxying ${globalUniqueId}`);
+      window.__reactProxies[globalUniqueId] = createProxy(ReactClass);
     }
 
-    return window.__reactProxies[id].get();
+    return window.__reactProxies[globalUniqueId].get();
   };
 }

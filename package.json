@@ -32,7 +32,7 @@
     "babel-eslint": "^3.1.9",
     "babel-loader": "^5.1.2",
     "babel-plugin-react-display-name": "^2.0.0",
-    "babel-plugin-wrap-react-components": "^2.0.1",
+    "babel-plugin-wrap-react-components": "^3.0.0",
     "eslint-plugin-react": "^2.3.0",
     "react-hot-loader": "^2.0.0-alpha-4",
     "react-proxy": "^0.6.7",
