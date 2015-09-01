@@ -3,12 +3,22 @@ import { createProxy, getForceUpdate } from 'react-proxy';
 
 if (!window.__reactProxies) {
   window.__reactProxies = {};
+  window.__reactFilenames = {};
 }
 
 const forceUpdate = getForceUpdate(React);
 
-export default function hotify({ filename, uniqueId, isInFunction }) {
-  return function (ReactClass) {
+export function shouldAcceptFilename(filename) {
+  return Object.keys(window.__reactFilenames).some(k => k.indexOf(filename) > -1);
+}
+
+export default function hotify(filename, components) {
+  if (Object.keys(components).some(k => !components[k].isInFunction)) {
+    window.__reactFilenames[filename] = true;
+  }
+
+  return uniqueId => ReactClass => {
+    const { isInFunction = false } = components[uniqueId];
     if (isInFunction) {
       return ReactClass;
     }

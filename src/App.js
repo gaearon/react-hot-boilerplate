@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import autobind from 'autobind-decorator';
-
 // In this demo, we show two things:
 
 // - You can edit classes even though they're not exported
@@ -19,6 +16,15 @@ import autobind from 'autobind-decorator';
 // Note how wrappers are composable and can be distributed on NPM
 // as separate packages.
 
+import { shouldAcceptFilename } from './transforms/hotify';
+if (shouldAcceptFilename(__filename)) {
+  module.hot.accept();
+}
+
+import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
+import { TimerA, TimerB } from './timers';
+
 var RandomNumber = React.createClass({
   componentWillMount() {
     this.num = Math.random();
@@ -28,60 +34,6 @@ var RandomNumber = React.createClass({
     return <div>Random number: {this.num}</div>
   }
 });
-
-class TimerA extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0 };
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
-
-  tick() {
-    this.setState({
-      counter: this.state.counter + 1
-    });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
-      <div style={{ color: 'red' }}>
-        <h2>{this.props.children}</h2>
-        <h3>TimerA state: {this.state.counter}</h3>
-      </div>
-    );
-  }
-}
-
-class TimerB extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0 };
-    this.interval = setInterval(() => this.tick(), 300);
-  }
-
-  tick() {
-    this.setState({
-      counter: this.state.counter + 1
-    });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
-      <div style={{ color: 'blue' }}>
-        <h2>{this.props.children}</h2>
-        <h3>TimerB state: {this.state.counter}</h3>
-      </div>
-    );
-  }
-}
 
 export default class App extends Component {
   render() {
@@ -94,5 +46,3 @@ export default class App extends Component {
     );
   }
 }
-
-module.hot.accept();
