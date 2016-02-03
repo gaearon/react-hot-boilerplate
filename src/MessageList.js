@@ -8,12 +8,16 @@ class Message extends Component {
 
 
 export default class MessageList extends Component {
+    constructor () {
+        super();
+        this.state = {
+            messages: [1, 2, 3, 4].map((obj) => {return {id: obj, name: obj, content: obj}; })
+        };
+    }
     render() {
-        // TODO: move this to state
-        var list = [1, 2, 3, 4, 5, 6].map((obj) => {return {id: obj, name: obj, content: obj}; });
         return (
             <ul>
-                {list.map((msg) => <Message {...msg} />)}
+                {this.state.messages.map((msg) => <Message {...msg} />)}
             </ul>
         )
     }
