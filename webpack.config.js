@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -19,14 +19,18 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.js[x]?$/,
         loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.css$/, 
-        loaders: ['style', 'css'],
+        test: /\.less$/, 
+        loaders: ['style', 'css', 'less'],
         include: path.join(__dirname, 'src')
+      },
+      { 
+        test: /\.(png|jpg)$/, 
+        loader: 'url-loader?limit=8192' 
       }
     ]
   }
