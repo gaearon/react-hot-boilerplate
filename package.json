@@ -4,7 +4,8 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "vscode": "npm i typings -g && typings i react react-dom -A -S"
   },
   "repository": {
     "type": "git",
