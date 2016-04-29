@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "vscode": "npm i typings -g && typings i react react-dom -A -S"
+    "vscode": "npm i typings -D && typings i react react-dom -A -S"
   },
   "repository": {
     "type": "git",
