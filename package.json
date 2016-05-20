@@ -38,7 +38,9 @@
     "eslint-plugin-react": "^3.6.2",
     "react-hot-loader": "^3.0.0-beta.1",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
     "react": "^15.0.1",
