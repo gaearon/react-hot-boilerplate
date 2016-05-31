@@ -1,10 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var packageJson = require('./package.json');
+
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    `webpack-dev-server/client?http://localhost:${packageJson[packageJson.name].port}`,
     'webpack/hot/only-dev-server',
     './src/index'
   ],

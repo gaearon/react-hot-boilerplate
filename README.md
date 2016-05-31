@@ -19,6 +19,8 @@ open http://localhost:3000
 Now edit `src/App.js`.  
 Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
 
+You can change the port of the local server in the `react-hot-boilerplate` config inside package.json
+
 ### Linting
 
 This boilerplate project includes React-friendly ESLint configuration.
