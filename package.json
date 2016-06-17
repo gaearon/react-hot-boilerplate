@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
-    "start": "node server.js",
+    "start": "hjs-dev-server",
     "lint": "eslint src"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint": "^2.12.0",
     "eslint-plugin-react": "^5.2.1",
+    "hjs-webpack": "^8.2.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
