@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
     "start": "hjs-dev-server",
     "lint": "eslint src"
   },
