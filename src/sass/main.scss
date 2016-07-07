@@ -1,0 +1,30 @@
+@import 'normalize';
+@import 'colors';
+@import 'when-than';
+@import 'global-typography';
+@import 'typography';
+@import '_functions';
+
+body {
+	background: blue;
+	flex: 1;
+	transition: opacity .5s;
+}
+
+@include when-wider-than(tablet) {
+	body {
+		background: orange;
+	}
+}
+
+@include when-wider-than(small_desktop) {
+	body {
+		background: purple;
+	}
+}
+
+@include when-wider-than(large_desktop) {
+	body {
+		background: green;
+	}
+}

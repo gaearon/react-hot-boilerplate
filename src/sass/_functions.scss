@@ -1,0 +1,56 @@
+$base-font-size: 16px;
+$zero-in-pixels: 1px - 1px;
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function convert-to-rem($value, $base-value: $rem-base) {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if $value == 0rem {
+    $value: 0;
+  }
+  @return $value;
+}
+
+@function rem($values, $base-value: $rem-base) {
+  $max: length($values);
+  @if $max == 1 {
+    @return convert-to-rem(nth($values, 1), $base-value);
+  }
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $ase-value));
+  }
+  @return $remValues;
+}
+
+@function should-convert-target($target) {
+    @if unit($target) != "px" {
+        @error("You tried to convert '#{$target}' but conversion functions only convert pixels");
+        @return false;
+    }
+
+    @if $target == $zero-in-pixels {
+        @return false;
+    }
+
+    @return true;
+}
+
+@function em($target, $context: $base-font-size) {
+    @if should-convert-target($target) != true { @return 0; }
+
+    @return ($target / $context) * 1em;
+}
+
+// Taken from https://gist.github.com/jlong/8760275
+@function map-fetch($map, $keys...) {
+    $current-spot-in-map: $map;
+
+    @each $key in $keys {
+        $current-spot-in-map: map-get($current-spot-in-map, $key);
+    }
+
+    @return $current-spot-in-map;
+}
