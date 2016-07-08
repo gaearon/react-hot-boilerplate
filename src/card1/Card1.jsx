@@ -1,12 +1,13 @@
 import React from 'react';
-import './card1.scss';
 
 const Card1 = ({ cardType }) => {
   return (
-    <div className="card1">
-      <h1>
-        {cardType}
-      </h1>
+    <div className="card1-container">
+      <div className="card1">
+        <h1>
+          {cardType}
+        </h1>
+      </div>
     </div>
   )
 }

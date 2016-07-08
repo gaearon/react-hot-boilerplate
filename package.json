@@ -41,19 +41,23 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-	"autoprefixer": "^6.2.1",
-	"autoprefixer-loader": "^3.1.0",
-	"body-parser": "^1.14.2",
-	"css-loader": "^0.15.6",
-	"extract-text-webpack-plugin": "^1.0.1",
-	"lodash": "^3.9.3",
-	"node-libs-browser": "^0.5.2",
-	"node-sass": "^3.2.0",
-	"normalize-css": "^2.3.1",
-	"postcss-loader": "^0.8.0",
-	"sass-loader": "^1.0.3",
-	"style-loader": "^0.12.3",
+    "autoprefixer": "^6.2.1",
+    "autoprefixer-loader": "^3.1.0",
+    "body-parser": "^1.14.2",
+    "bourbon": "^4.2.7",
+    "css-loader": "^0.15.6",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "lodash": "^3.9.3",
+    "neat": "^1.2.2",
+    "node-bourbon": "^4.2.8",
+    "node-libs-browser": "^0.5.2",
+    "node-neat": "^1.7.2",
+    "node-sass": "^3.2.0",
+    "normalize-css": "^2.3.1",
+    "postcss-loader": "^0.8.0",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "sass-loader": "^1.0.3",
+    "style-loader": "^0.12.3"
   }
 }

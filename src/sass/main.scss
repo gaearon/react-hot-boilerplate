@@ -1,4 +1,7 @@
 @import 'normalize';
+$visual-grid: true;
+@import 'bourbon';
+@import 'neat';
 @import 'colors';
 @import 'when-than';
 @import 'global-typography';
@@ -6,25 +9,44 @@
 @import '_functions';
 
 body {
-	background: blue;
+	@include linear-gradient(to top, red, orange);
 	flex: 1;
 	transition: opacity .5s;
+
+	.card1-container {
+	  background: blue;
+	  height: 200px;
+	}
+
+	.card1 {
+	  background: $white-smoke;
+		margin: 0 30px;
+	}
 }
 
 @include when-wider-than(tablet) {
 	body {
 		background: orange;
+		.card1 {
+			margin: 0 40px;
+		}
 	}
 }
 
 @include when-wider-than(small_desktop) {
 	body {
 		background: purple;
+		.card1 {
+			margin: 0 60px;
+		}
 	}
 }
 
 @include when-wider-than(large_desktop) {
 	body {
 		background: green;
+		.card1 {
+			margin: 0 80px;
+		}
 	}
 }
