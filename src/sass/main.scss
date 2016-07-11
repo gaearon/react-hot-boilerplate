@@ -8,28 +8,32 @@ $visual-grid: true;
 @import 'typography';
 @import '_functions';
 
-body {
-	@include linear-gradient(to top, red, orange);
-	flex: 1;
-	transition: opacity .5s;
+// mobile
+nav {
+	.nav {
+	background: $black;
+	padding: 10px;
 
-	.card1-container {
-	  background: blue;
-	  height: 200px;
+	h3 {
+		color: $white;
+		}
 	}
 
-	.card1 {
-	  background: $white-smoke;
-		margin: 0 30px;
+	.sub-nav {
+		padding: 5px;
+		background: $white;
+		color: $black;
 	}
 }
 
 @include when-wider-than(tablet) {
 	body {
 		background: orange;
+
 		.card1 {
 			margin: 0 40px;
 		}
+
 	}
 }
 
