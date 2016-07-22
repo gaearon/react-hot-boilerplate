@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-// Firebase
-import Rebase  from 're-base';
-var base = Rebase.createClass('https://dekuazim.firebaseio.com/');
+import reactFire from 'reactfire';
+import firebase from 'firebase';
+import reactMixin from 'react-mixin';
 
 export default class App extends Component {
+  componentDidMount(){
+    console.log('componentDidMount')
+    firebase.auth().signInWithEmailAndPassword('siteuser@urizenventures.com', 'FilipinosRule').catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  }
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <div>
+        <h1>Hello, world.</h1>
+        <main>
+          This is where I want to see things.
+        </main>
+      </div>
     );
   }
 }
+
+reactMixin.onClass(App, reactFire);

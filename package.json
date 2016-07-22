@@ -12,17 +12,8 @@
     "url": "https://github.com/gaearon/react-hot-boilerplate.git"
   },
   "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
@@ -38,12 +29,11 @@
     "babel-preset-stage-0": "^6.5.0",
     "eslint": "^3.1.1",
     "eslint-plugin-react": "^5.2.2",
-    "firebase": "^3.2.0",
     "history": "^3.0.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
-    "re-base": "^1.5.1",
     "react-hot-loader": "^1.3.0",
+    "react-mixin": "^3.0.5",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "underscore.string": "^3.3.4",
@@ -51,7 +41,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "react": "^0.14.6",
+    "firebase": "^3.2.0",
+    "reactfire": "^1.0.0",
+    "react": "^0.14.8",
     "react-dom": "^0.14.6"
   }
 }
