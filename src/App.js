@@ -1,8 +1,6 @@
 // Dependencies
 import React, { Component } from 'react';
-import reactFire from 'reactfire';
 import firebase from 'firebase';
-import reactMixin from 'react-mixin';
 
 // Components
 import List from './js/components/List';
@@ -12,6 +10,7 @@ import AddItem from './js/components/AddItem';
 export default class App extends Component {
   constructor(props){
     super(props);
+    var database = firebase.database();
     this.state = {
       list: [],
       loading: true
@@ -19,13 +18,42 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    console.log('componentDidMount')
-    firebase.auth().signInWithEmailAndPassword('siteuser@urizenventures.com', 'FilipinosRule').catch(function(error) {
+    firebase.auth()
+    .signInWithEmailAndPassword('siteuser@urizenventures.com', 'FilipinosRule')
+    .then(function(){
+      // Handle success here
+      this.setState({loading: false});
+    }.bind(this), function(error){
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      // ...
+      console.error(errorCode, errorMessage)
     });
+    // var ref = firebase.database().ref("list");
+    // this.bindAsArray(ref, "list");
+  }
+  // componentWillUnmount(){
+  //   base.removeBinding(this.ref);
+  // }
+  handleAddItem(newItem){
+    // new item with unique key id
+    var key = firebase.database().ref('new').push(newItem).key;
+
+    // How to update
+    var updates = {};
+    updates['/list/' + key] = newItem + '--' + newItem;
+
+    firebase.database().ref().update(updates);
+    // database.ref('practice/').set({
+    //   list: this.state.list.concat([newItem])
+    // })
+  }
+  handleRemoveItem(index){
+    var newList = this.state.list;
+    newList.splice(index, 1);
+    this.setState({
+      list: newList
+    })
   }
   render(){
     return (
