@@ -1,5 +1,7 @@
 // Dependencies
 import React, { Component } from 'react';
+import reactMixin from 'react-mixin';
+import reactFire from 'reactfire';
 import firebase from 'firebase';
 
 // Components
@@ -8,9 +10,10 @@ import AddItem from './js/components/AddItem';
 
 
 export default class App extends Component {
+
   constructor(props){
     super(props);
-    var database = firebase.database();
+    this.fireDB = firebase.database().ref('react-hot-boilerplate/list');
     this.state = {
       list: [],
       loading: true
@@ -29,21 +32,21 @@ export default class App extends Component {
       var errorMessage = error.message;
       console.error(errorCode, errorMessage)
     });
+    this.bindAsArray(this.fireDB, "list");
     // var ref = firebase.database().ref("list");
     // this.bindAsArray(ref, "list");
   }
-  // componentWillUnmount(){
-  //   base.removeBinding(this.ref);
-  // }
+
   handleAddItem(newItem){
     // new item with unique key id
-    var key = firebase.database().ref('new').push(newItem).key;
+    var key = this.fireDB.push(newItem).key;
 
     // How to update
-    var updates = {};
-    updates['/list/' + key] = newItem + '--' + newItem;
+    // var updates = {};
+    // updates['/list/' + key] = newItem + '--' + newItem;
+    // firebase.database().ref().update(updates);
 
-    firebase.database().ref().update(updates);
+
     // database.ref('practice/').set({
     //   list: this.state.list.concat([newItem])
     // })
@@ -63,12 +66,13 @@ export default class App extends Component {
             <div className="col-sm-12">
               <h3 className="text-center"> re-base Todo List </h3>
               <AddItem add={this.handleAddItem.bind(this)}/>
-              {this.state.loading === true ? <h3> LOADING... </h3> : <List items={this.state.list} remove={this.handleRemoveItem.bind(this)}/>}
+              { /* this.state.loading === true ? <h3> LOADING... </h3> : <List items={this.state.list} remove={this.handleRemoveItem.bind(this)}/>*/}
             </div>
           </div>
         </div>
       </div>
     )
   }
-
 }
+
+reactMixin.onClass(App, reactFire);
