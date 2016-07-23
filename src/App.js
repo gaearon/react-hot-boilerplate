@@ -36,6 +36,10 @@ export default class App extends Component {
     // var ref = firebase.database().ref("list");
     // this.bindAsArray(ref, "list");
   }
+  
+  componentWillUnmount() {
+    this.unbind("list");
+  }
 
   handleAddItem(newItem){
     // new item with unique key id
@@ -52,11 +56,21 @@ export default class App extends Component {
     // })
   }
   handleRemoveItem(index){
-    var newList = this.state.list;
-    newList.splice(index, 1);
-    this.setState({
-      list: newList
-    })
+
+    // var updates = {};
+    // updates['/list/' + index] = null;
+    // firebase.database().ref('react-hot-boilerplate/').update(updates);
+
+    firebase.database().ref('react-hot-boilerplate/list/' + index).remove();
+    // this.fireDB.update({index: null});
+  }
+
+  handleUpdate(item){
+    console.log('item:submit', item);
+    var updates = {};
+    updates[item.key] = item.value;
+
+    this.fireDB.update(updates);
   }
   render(){
     return (
@@ -66,7 +80,7 @@ export default class App extends Component {
             <div className="col-sm-12">
               <h3 className="text-center"> re-base Todo List </h3>
               <AddItem add={this.handleAddItem.bind(this)}/>
-              { /* this.state.loading === true ? <h3> LOADING... </h3> : <List items={this.state.list} remove={this.handleRemoveItem.bind(this)}/>*/}
+              { this.state.loading === true ? <h3> LOADING... </h3> : <List items={this.state.list} remove={this.handleRemoveItem.bind(this)} update={this.handleUpdate.bind(this)}/> }
             </div>
           </div>
         </div>
