@@ -42,34 +42,15 @@ export default class App extends Component {
   }
 
   handleAddItem(newItem){
-    // new item with unique key id
-    var key = this.fireDB.push(newItem).key;
-
-    // How to update
-    // var updates = {};
-    // updates['/list/' + key] = newItem + '--' + newItem;
-    // firebase.database().ref().update(updates);
-
-
-    // database.ref('practice/').set({
-    //   list: this.state.list.concat([newItem])
-    // })
+    this.fireDB.push(newItem);
   }
   handleRemoveItem(index){
-
-    // var updates = {};
-    // updates['/list/' + index] = null;
-    // firebase.database().ref('react-hot-boilerplate/').update(updates);
-
     firebase.database().ref('react-hot-boilerplate/list/' + index).remove();
-    // this.fireDB.update({index: null});
   }
 
   handleUpdate(item){
-    console.log('item:submit', item);
     var updates = {};
     updates[item.key] = item.value;
-
     this.fireDB.update(updates);
   }
   render(){
