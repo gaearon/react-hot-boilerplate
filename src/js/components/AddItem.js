@@ -4,7 +4,6 @@ class AddItem extends React.Component{
   handleSubmit(e){
     if(e.keyCode === 13){
       this.props.add(this.refs.newItem.value);
-      console.log('AddItem:handleSubmit', this.refs.newItem.value);
       this.refs.newItem.value = '';
     }
   }

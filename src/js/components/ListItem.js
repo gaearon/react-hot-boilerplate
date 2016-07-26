@@ -4,20 +4,17 @@ class ListItems extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      item : {
-        key : props.index,
-        value : props.value
-      }
+      value : props.value
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.update(this.state.item)
+    this.props.update.call(null, this.props.index, this.state.value);
   }
   handleChange(event) {
-    this.setState({item:{key: this.props.index, value: event.target.value}});
+    this.setState({ value: event.target.value });
   }
   render(){
     var styles = {
@@ -36,22 +33,22 @@ class ListItems extends React.Component{
         padding: 0
       },
       todoItem: {
-        paddingLeft: 20,
+        marginLeft: 20,
         fontSize: 17
       }
     };
     return (
       <li className="list-group-item" style={ styles.listGroup }>
+        <button
+          className="glyphicon glyphicon-remove"
+          style={ styles.removeItem }
+          onClick={ this.props.remove.bind(null, this.props.index) }
+        />
         <form className="commentForm" onSubmit={this.handleSubmit}>
-          <button
-            className="glyphicon glyphicon-remove"
-            style={ styles.removeItem }
-            onClick={ this.props.remove.bind(null, this.state.item.index) }
-          />
           <input
             style={styles.todoItem}
             type="text"
-            value= {this.state.item.value}
+            value= {this.state.value}
             onChange={ this.handleChange }
           />
         </form>
