@@ -1,8 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
+var loaders = require('./webpack.loaders');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: process.env.WEBPACK_DEVTOOL || 'source-map',
+
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -17,10 +19,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'src')
-    }]
+    loaders: loaders
   }
 };
