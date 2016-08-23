@@ -5,10 +5,10 @@ import App from './App';
 // Initialize Firebase
 import firebase from 'firebase';
 firebase.initializeApp({
-  apiKey: "AIzaSyDB5n2KmqVzQJXMuFI1sLcMG7eq3-97-Nc",
-  authDomain: "dekuazim.firebaseapp.com",
-  databaseURL: "https://dekuazim.firebaseio.com",
-  storageBucket: "dekuazim.appspot.com",
+  apiKey: // API KEY,
+  authDomain: // AUTH DOMAIN,
+  databaseURL: // dbURL,
+  storageBucket: // Storage bucks,
 });
 
 ReactDOM.render(<App />, document.getElementById('root'));
