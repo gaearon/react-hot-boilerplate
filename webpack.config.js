@@ -14,7 +14,7 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
-    './src/index',
+    './src/index.js',
     // the entry point of our app
   ],
 
@@ -28,7 +28,6 @@ module.exports = {
     // necessary for HMR to know where to load the hot update chunks
   },
 
-  context: path.resolve(__dirname, 'src'),
   devtool: 'inline-source-map',
 
   module: {
@@ -38,7 +37,7 @@ module.exports = {
         use: [
           'babel-loader',
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
     ],
   },
@@ -55,13 +54,13 @@ module.exports = {
   ],
 
   devServer: {
+    host: 'localhost',
+    port: 3000,
+
+    historyApiFallback: true,
+    // respond to 404s with index.html
+
     hot: true,
     // enable HMR on the server
-
-    contentBase: resolve(__dirname, 'dist'),
-    // match the output path
-
-    publicPath: '/static/'
-    // match the output `publicPath`
   },
 };
