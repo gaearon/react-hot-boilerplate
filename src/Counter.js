@@ -11,9 +11,7 @@ export default class Counter extends Component {
   }
 
   tick() {
-    this.setState({
-      counter: this.state.counter + 1
-    });
+    this.setState({ counter: this.state.counter + 1 });
   }
 
   componentWillUnmount() {
@@ -21,9 +19,6 @@ export default class Counter extends Component {
   }
 
   render() {
-    return (
-      <h2>Counter: {this.state.counter}</h2>
-   );
+    return <h2>Counter: {this.state.counter}</h2>;
   }
 }
-

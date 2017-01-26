@@ -6,5 +6,5 @@ export default function Layout({ children }) {
       <h1>Hello, world!</h1>
       {children}
     </div>
-  )
+  );
 }

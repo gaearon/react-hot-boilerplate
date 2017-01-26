@@ -12,6 +12,4 @@ const render = Component =>
     rootEl
   );
 
-render(App);
-
 if (module.hot) module.hot.accept('./App', () => render(App));
