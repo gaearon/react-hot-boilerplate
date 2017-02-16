@@ -4,7 +4,8 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "vscode": "npm i typings -D && typings i react react-dom -A -S"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2"
   }
 }
