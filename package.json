@@ -4,7 +4,10 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
+    "postbuild": "copyfiles index.html dist"
   },
   "repository": {
     "type": "git",
@@ -33,7 +36,10 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "copyfiles": "^1.2.0",
+    "cross-env": "^3.1.4",
     "react-hot-loader": "^3.0.0-beta.6",
+    "rimraf": "^2.6.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
   },
