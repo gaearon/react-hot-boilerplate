@@ -1,0 +1,71 @@
+// [CE] 10-27-15
+// `min-width` media queries will use the given breakpoint value
+// `max-width` media queries will use the given breakpoint value minus 1px
+
+// Prevents accidental overlapping of media queries when the browser or device width is set precisely to a breakpoint value.
+// This behavior is produced when a developer uses a combination of `when-wider-than` and `when-less-than`
+// eg. max-width(640px) and min-width(640px) would simultaneously effect an element, which is undesirable and unexpected based on the language used in this utility (when-less-than, when-wider-than)
+
+
+$breakpoints: (
+    mobile: 320px,
+    tablet: 768px,
+    small_desktop: 1024px,
+    large_desktop: 1280px
+);
+
+$there-is-no-higher-breakpoint: 9999em;
+
+$allowed-breakpoint-targets: inspect(map-keys($breakpoints));
+
+@function get-breakpoint($target) {
+    $breakpoint: map-get($breakpoints, $target);
+
+    @if $breakpoint == null {
+        @warn("You tried to respond_to '#{$target}'. Please use one of these available breakpoints - #{$allowed-breakpoint-targets}");
+    }
+
+    @return $breakpoint;
+}
+
+@function get-next-breakpoint($target) {
+    $possible-nexts: ();
+    $next-breakpoint: null;
+
+    @each $breakpoint, $value in $breakpoints {
+        @if $breakpoint == $target or length($possible-nexts) > 0 {
+            $possible-nexts: append($possible-nexts, $breakpoint);
+        }
+    }
+
+    @if length($possible-nexts) > 1 {
+        $next-breakpoint: nth($possible-nexts, 2);
+        @return map-get($breakpoints, $next-breakpoint);
+    }
+
+    @return $there-is-no-higher-breakpoint;
+}
+
+@mixin when-wider-than($target) {
+
+    @media screen and (min-width: get-breakpoint($target)) {
+        @content;
+    }
+
+}
+
+@mixin when-less-than($target) {
+
+    @media screen and (max-width: get-breakpoint($target) - 1) {
+        @content;
+    }
+
+}
+
+@mixin when-on($target) {
+
+    @media screen and (min-width: get-breakpoint($target)) and (max-width: get-next-breakpoint($target) - 1) {
+        @content;
+    }
+
+}

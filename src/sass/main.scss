@@ -1,0 +1,56 @@
+@import 'normalize';
+$visual-grid: true;
+@import 'bourbon';
+@import 'neat';
+@import 'colors';
+@import 'when-than';
+@import 'global-typography';
+@import 'typography';
+@import '_functions';
+
+// mobile
+nav {
+	.nav {
+	background: $black;
+	padding: 10px;
+
+	h3 {
+		color: $white;
+		}
+	}
+
+	.sub-nav {
+		padding: 5px;
+		background: $white;
+		color: $black;
+	}
+}
+
+@include when-wider-than(tablet) {
+	body {
+		background: orange;
+
+		.card1 {
+			margin: 0 40px;
+		}
+
+	}
+}
+
+@include when-wider-than(small_desktop) {
+	body {
+		background: purple;
+		.card1 {
+			margin: 0 60px;
+		}
+	}
+}
+
+@include when-wider-than(large_desktop) {
+	body {
+		background: green;
+		.card1 {
+			margin: 0 80px;
+		}
+	}
+}
