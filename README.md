@@ -34,6 +34,7 @@ Your changes will appear without reloading the browser like in [this video](http
 This boilerplate project includes React-friendly ESLint configuration.
 
 ```
+npm install -g eslint eslint-plugin-react babel-eslint
 npm run lint
 ```
 
