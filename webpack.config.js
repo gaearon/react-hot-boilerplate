@@ -62,5 +62,8 @@ module.exports = {
 
     hot: true,
     // enable HMR on the server
+
+    overlay: true,
+    // overlay errors on the application
   },
 };
