@@ -3,17 +3,17 @@ react-hot-boilerplate
 
 The minimal dev environment to enable live-editing React components.
 
-Based on the guide available at https://webpack.js.org/guides/hmr-react/
+Based on the guide available at https://webpack.js.org/guides/hot-module-replacement/
 
 ### Usage
 
 ```
-npm install
-npm start
+yarn
+yarn start
 open http://localhost:3000
 ```
 
-Now edit `src/App.js`.  
+Now edit [`src/App.js`](./src/App.js).
 Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
 
 ### Linting
@@ -21,7 +21,7 @@ Your changes will appear without reloading the browser like in [this video](http
 This boilerplate project includes React-friendly ESLint configuration.
 
 ```
-npm run lint
+yarn run lint
 ```
 
 ### Building
@@ -29,7 +29,7 @@ npm run lint
 A basic production script is included that builds your app to a `dist` folder
 
 ```
-npm run build
+yarn run build
 ```
 
 ### Using `0.0.0.0` as Host
